@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.org.incatrek.model.Declaracion;
+
 import pe.org.incatrek.repository.IDeclaracionRepository;
 import pe.org.incatrek.service.IDeclaracionService;
 
@@ -20,12 +21,13 @@ public class DeclaracionServiceImpl implements IDeclaracionService {
 	@Override
 	@Transactional
 	public boolean insertar(Declaracion declaracion) {
-		Declaracion objDeclaracion = dR.save(declaracion);
-		if(objDeclaracion == null)
-			return false;
-		else
+		Declaracion objDeclaracion= dR.save(declaracion);
+		if	(objDeclaracion !=null)
 			return true;
+		else
+			return false;
 	}
+	
 
 	@Override
 	@Transactional
@@ -59,4 +61,12 @@ public class DeclaracionServiceImpl implements IDeclaracionService {
 		return dR.findById(idDeclaracion);
 	}
 
+	
+	@Override
+	@Transactional
+	public List<Declaracion> buscarTurista(int idTurista) {
+		return dR.buscarTurista(idTurista);
+	}
+
+	
 }

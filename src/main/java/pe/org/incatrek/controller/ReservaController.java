@@ -1,5 +1,6 @@
 package pe.org.incatrek.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
+import pe.org.incatrek.model.Guia;
 import pe.org.incatrek.model.Paquete;
 import pe.org.incatrek.model.Turista;
 import pe.org.incatrek.model.Reserva;
@@ -22,6 +24,7 @@ import pe.org.incatrek.model.Reserva;
 import pe.org.incatrek.service.IPaqueteService;
 import pe.org.incatrek.service.ITuristaService;
 import pe.org.incatrek.service.IReservaService;
+import pe.org.incatrek.service.IGuiaService;
 
 @Controller
 @RequestMapping("/reserva")
@@ -33,6 +36,8 @@ public class ReservaController {
 		private ITuristaService tService;
 		@Autowired
 		private IReservaService rService;
+		@Autowired
+		private IGuiaService gService;
 		
 		@RequestMapping("/bienvenido")
 		public String irPaginaBienvenida() {
@@ -50,10 +55,12 @@ public class ReservaController {
 			
 			model.addAttribute("listaPaquetes", pService.listar());
 			model.addAttribute("listaTuristas", tService.listar());
+			model.addAttribute("listaGuias", gService.listar());
 			
 			model.addAttribute("paquete", new Paquete());
 			model.addAttribute("turista", new Turista());
 			model.addAttribute("reserva", new Reserva());
+			model.addAttribute("guia", new Guia());
 			
 			return "reserva";
 		}
@@ -65,6 +72,7 @@ public class ReservaController {
 				if(binRes.hasErrors()) {
 				model.addAttribute("listaPaquetes", pService.listar());
 				model.addAttribute("listaTuristas", tService.listar());
+				model.addAttribute("listaGuias", gService.listar());
 				return("reserva");
 				}
 				else {
@@ -90,6 +98,7 @@ public class ReservaController {
 			else {
 				model.addAttribute("listaPaquetes", pService.listar());
 				model.addAttribute("listaTuristas", tService.listar());
+				model.addAttribute("listaGuias", gService.listar());
 				
 				if(objReserva.isPresent())
 					objReserva.ifPresent(o -> model.addAttribute("reserva" ,o ));
@@ -117,6 +126,31 @@ public class ReservaController {
 		public String listar(Map<String, Object> model) {
 			model.put("listaReservas", rService.listar());
 			return "listReservas";
+		}
+		
+		@RequestMapping("/irBuscar")
+		public String buscar(Model model) {
+			model.addAttribute("reserva", new Reserva());
+			return "buscarReserva";
+		}
+		
+		@RequestMapping("/buscar")
+		public String findByCategory(Map<String, Object> model, @ModelAttribute Reserva reserva)throws ParseException	
+		{
+			List<Reserva> listaReservas;
+			reserva.setNombreReserva(reserva.getNombreReserva());
+			listaReservas = rService.buscarNombreReserva(reserva.getNombreReserva());
+			if (listaReservas.isEmpty()) {
+				listaReservas = rService.buscarPaquete(reserva.getNombreReserva());
+			}
+			if (listaReservas.isEmpty()) {
+				listaReservas = rService.buscarTurista(reserva.getNombreReserva());
+			}
+			if (listaReservas.isEmpty()) {
+				model.put("mensaje", "No se encontraron coincidencias");
+			}
+			model.put("listaReservas", listaReservas);
+			return "buscarReserva";
 		}
 		
 }

@@ -1,6 +1,5 @@
 package pe.org.incatrek.serviceimpl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,9 +74,4 @@ public class ReservaServiceImpl implements IReservaService {
 		return rR.buscarPaquete(nombrePaquete);
 	}
 	
-	@Override
-	@Transactional
-	public List<Reserva> buscarPorFecha(Date fechaReserva) {
-		return rR.buscarPorFecha(fechaReserva);
-	}
 }

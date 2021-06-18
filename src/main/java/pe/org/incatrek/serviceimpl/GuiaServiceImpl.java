@@ -19,13 +19,13 @@ public class GuiaServiceImpl implements IGuiaService {
 	
 	@Override
 	@Transactional
-	public boolean insertar(Guia guia) {
-		Guia objGuia = gR.save(guia);
-		if(objGuia == null)
-			return false;
-		else
-			return true;
+	public Integer insertar(Guia guia) {
+		int rpta = gR.busquedaDNIGuia(guia.getDniGuia());
+		if(rpta == 0)
+			gR.save(guia);
+		return rpta;
 	}
+
 
 	@Override
 	@Transactional

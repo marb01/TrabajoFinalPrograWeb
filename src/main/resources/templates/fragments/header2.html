@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+		<meta charset="UTF-8"></meta>
+		
+		
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+		
+</head>
+
+	<body>
+		<!-- th:fragment define un fragment los cuales sirven para evitar la redundancia de codigo -->
+		<!-- Sintaxis th:fragment="Nombre del fragment" -->
+		<div th:fragment="header">
+			<!-- this is header -->
+			
+			<!--
+			<nav class="navbar navbar-inverse" style='background-color: #13293E;'>
+				<div class="container" style='background-color: #13293E;'>
+					
+					<div class="navbar-header" style='background-color: #13293E;'>
+						<a class="navbar-brand" th:href="@{/declaracion/bienvenido}">INCATREK</a>
+					</div>
+					
+					<div id="navbar" class="collapse navbar-collapse" style='background-color: #13293E;'>
+					
+						<ul class="nav navbar-nav" style='background-color: #13293E;'>
+						
+							<li class="nav-item" ><a class="nav-item" th:href="@{/turista/listar}"> <i class="fas fa-snowboarding"></i>Turista</a></li>
+							<li class="nav-item"><a class="nav-item" th:href="@{/reserva/listar}">Reserva</a></li>
+							<li class="nav-item"><a class="nav-item" th:href="@{/proveedor/listar}">Proveedor</a></li>
+							<li class="nav-item"><a class="nav-item" th:href="@{/paquete/listar}">Paquete</a></li>
+							<li class="nav-item"><a class="nav-item" th:href="@{/guia/listar}">Guia</a></li>
+							<li class="nav-item"><a class="nav-item" th:href="@{/declaracion/listar}">Declaracion</a></li>
+	
+						</ul>
+						 
+					</div>
+					
+				</div>
+			</nav>
+			-->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style='background-color: #13293E !important; '>
+  					<div class="container-fluid">
+				    <a class="navbar-brand" th:href="@{/declaracion/bienvenido}">
+				    <img src="/imagenes/incatrek.jpg" alt="" width="150" height="40" class="d-inline-block align-text-top">
+				    </a>
+				    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				      <span class="navbar-toggler-icon"></span>
+				    </button>
+				  
+				  </div>
+			</nav>
+
+		</div>
+						<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	
+	</body>
+	
+</html>

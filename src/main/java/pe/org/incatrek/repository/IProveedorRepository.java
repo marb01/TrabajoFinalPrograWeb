@@ -11,7 +11,10 @@ import org.springframework.stereotype.Repository;
 import pe.org.incatrek.model.Proveedor;
 
 @Repository
-public interface IProveedorRepository extends JpaRepository<Proveedor, Integer>{	
+public interface IProveedorRepository extends JpaRepository<Proveedor, Integer>{
+	@Query("select count(p.rucProveedor) from Proveedor p where p.rucProveedor = :rucProveedor")
+	public int busquedaRUCProveedor(@Param("rucProveedor") String rucProveedor);
+	
 	@Query("from Proveedor p where p.nombreProveedor like %:nombreProveedor%")
 	List<Proveedor> buscarPorNombre(@Param("nombreProveedor") String nombreProveedor);
 	

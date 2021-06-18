@@ -38,6 +38,7 @@
 									<th class="text-center">FECHA</th>
 									<th class="text-center">TURISTA</th>
 									<th class="text-center">PAQUETE</th>
+									<th class="text-center">GUIA</th>
 									<th class="text-center">MONTO TOTAL</th>
 									<th class="text-center">CUPOS DISPONIBLES</th>
 									<th class="text-center">OPERACIÓN</th>
@@ -53,6 +54,7 @@
 									<td th:text="${#dates.format(r.fechaReserva, 'dd/MM/yyyy')}"></td>
 									<td th:text="${r.turista.nombreTurista}"></td>
 									<td th:text="${r.paquete.nombrePaquete}"></td>
+									<td th:text="${r.guia.nombreGuia}"></td>
 									<td th:text="${r.numParticipantes*r.paquete.precioPaquete}"></td>
 									<td th:text="${r.paquete.numCupos-r.numParticipantes}"></td>					
 									<td class="text-center"><a class="glyphicon glyphicon-trash" th:href="@{/reserva/eliminar?id=}+${r.idReserva}"> Eliminar</a></td>

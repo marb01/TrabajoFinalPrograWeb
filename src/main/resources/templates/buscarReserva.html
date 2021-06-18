@@ -53,7 +53,8 @@
 						<th class="text-center">NUMERO DE PARTICIPANTES</th>
 						<th class="text-center">FECHA</th>
 						<th class="text-center">TURISTA</th>
-						<th class="text-center">PAQUETE</th>								
+						<th class="text-center">PAQUETE</th>
+						<th class="text-center">GUIA</th>								
 						<th class="text-center">MONTO TOTAL</th>
 						<th class="text-center">CUPOS DISPONIBLES</th>
 					</tr>
@@ -65,7 +66,8 @@
 						<td th:text="${res.numParticipantes}"></td>
 						<td th:text="${#dates.format(res.fechaReserva, 'dd/MM/yyyy')}"></td>
 						<td th:text="${res.turista.nombreTurista}"></td>
-						<td th:text="${res.paquete.nombrePaquete}"></td>							
+						<td th:text="${res.paquete.nombrePaquete}"></td>
+						<td th:text="${res.guia.nombreGuia}"></td>							
 						<td th:text="${res.numParticipantes*res.paquete.precioPaquete}"></td>
 						<td th:text="${res.paquete.numCupos-res.numParticipantes}"></td>					
 				

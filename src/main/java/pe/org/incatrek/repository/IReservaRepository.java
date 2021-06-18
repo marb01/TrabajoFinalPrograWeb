@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
 
 import pe.org.incatrek.model.Reserva;
@@ -23,10 +22,4 @@ public interface IReservaRepository extends JpaRepository<Reserva, Integer>{
 	@Query("from Reserva r where r.turista.nombreTurista like %:nombreTurista%")
 	List<Reserva> buscarTurista(@Param("nombreTurista") String nombreTurista);
 	
-	
-	@Query("from Reserva r where r.fechaReserva like %:fechaReserva%")
-	List<Reserva> buscarPorFecha(@Param("fechaReserva")Date fechaReserva);
-	
-	/*
-	List<Reserva> buscarPorFecha(Date fechaReserva);*/
 }

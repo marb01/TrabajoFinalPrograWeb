@@ -12,4 +12,5 @@ public interface IDeclaracionService {
 	List<Declaracion> listar();
 	List<Declaracion> buscarPorId(int idDeclaracion);
 	public Optional<Declaracion> listarId(int idDeclaracion);
+	public List<Declaracion> buscarTurista(int idTurista);
 }

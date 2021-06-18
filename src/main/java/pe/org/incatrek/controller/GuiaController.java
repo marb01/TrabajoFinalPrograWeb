@@ -1,5 +1,6 @@
 package pe.org.incatrek.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -46,17 +47,20 @@ public class GuiaController {
 		public String registrar (@ModelAttribute Guia objGuia,BindingResult binRes,Model model)throws ParseException
 			{
 				if(binRes.hasErrors())
-				return("guia");
+					return("guia");
 				else {
-					boolean flag = gService.insertar(objGuia);
-					if (flag)
-						return "redirect:/guia/listar";
+					int rpta = gService.insertar(objGuia);
+					if (rpta > 0) {
+						model.addAttribute("mensaje", "El DNI del guia ya se encuentra registrado");
+						return "guia";
+					}
 					else {
-						model.addAttribute("mensaje", "Ocurrio un error");
-						return "redirect:/guia/irRegistrar";
+						model.addAttribute("mensaje", "Se guardo correctamente");
+						return "redirect:/guia/listar";
 					}
 				}
 			}
+		
 			
 		@RequestMapping("/modificar/{id}")
 		public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {
@@ -93,6 +97,25 @@ public class GuiaController {
 			return "listGuia";
 		}
 		
+		@RequestMapping("/irBuscar")
+		public String buscar(Model model) {
+			model.addAttribute("guia", new Guia());
+			return "buscarGuia";
+		}
 		
-		
+		@RequestMapping("/buscar")
+		public String findByCategory(Map<String, Object> model, @ModelAttribute Guia guia)throws ParseException	
+		{
+			List<Guia> listaGuias;
+			guia.setNombreGuia(guia.getNombreGuia());
+			listaGuias = gService.buscarPorNombre(guia.getNombreGuia());
+			if (listaGuias.isEmpty()) {
+				listaGuias = gService.buscarPorDNI(guia.getNombreGuia());
+			}
+			if (listaGuias.isEmpty()) {
+				model.put("mensaje", "No se encontraron coincidencias");
+			}
+			model.put("listaGuias", listaGuias);
+			return "buscarGuia";
+		}
 }

@@ -29,14 +29,14 @@
 					
 				<div class="form-group">
 					<label for="nombre" style='color:white;'>Nombre</label>
-					<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{nombreReserva}" id="nombreReserva"></input>
+					<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{nombreReserva}" id="nombreReserva" maxlength="30"></input>
 					
 					<div class="alert alert-danger" th:if="${#fields.hasErrors('nombreReserva')}" 
 							th:errors="*{nombreReserva}">						
 					</div>
 					
 					<label for="numeroparticipantes" style='color:white;'>Numero de Participantes:</label>
-					<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{numParticipantes}" id="numeroparticipantes"></input>
+					<input type="number" style='margin-bottom:20px;' class="form-control" th:field="*{numParticipantes}" id="numeroparticipantes" max="15"></input>
 					
 					<div class="alert alert-danger" th:if="${#fields.hasErrors('numParticipantes')}" 
 							th:errors="*{numParticipantes}">						
@@ -63,7 +63,16 @@
 								th:text="${p.nombrePaquete}"
 							 	th:selected="(${p.idPaquete} == *{paquete.idPaquete})">
 						</option>
+					</select>
+					
+					<label style='color:white;' for="guia" class= "col-sm-2 col-form-label">Guia:</label>
+					<select class="form-control" th:field="*{guia.idGuia}"> 
+						<option th:each= "g:${listaGuias}" th:value="${g.idGuia}"
+								th:text="${g.nombreGuia}"
+							 	th:selected="(${g.idGuia} == *{guia.idGuia})">
+						</option>
 					</select>	
+							
 						
 				</div>
 		

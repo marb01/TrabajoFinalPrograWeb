@@ -1,6 +1,5 @@
 package pe.org.incatrek.serviceimpl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,11 +50,6 @@ public class PaqueteServiceImpl implements IPaqueteService {
 		return pR.buscarPorNombre(nombrePaquete);
 	}
 	
-	@Transactional
-	@Override
-	public List<Paquete> buscarPorFecha(Date fechaPaquete) {
-		return pR.buscarPorFecha(fechaPaquete);
-	}
 
 	@Transactional
 	@Override

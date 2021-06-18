@@ -11,7 +11,11 @@ import org.springframework.stereotype.Repository;
 import pe.org.incatrek.model.Turista;
 
 @Repository
-public interface ITuristaRepository extends JpaRepository<Turista, Integer>{	
+public interface ITuristaRepository extends JpaRepository<Turista, Integer>
+{	
+	@Query("select count(t.dniTurista) from Turista t where t.dniTurista = :dniTurista")
+	public int busquedaDNITurista(@Param("dniTurista") String dniTurista);
+	
 	@Query("from Turista t where t.nombreTurista like %:nombreTurista%")
 	List<Turista> buscarPorNombre(@Param("nombreTurista") String nombreTurista);
 	

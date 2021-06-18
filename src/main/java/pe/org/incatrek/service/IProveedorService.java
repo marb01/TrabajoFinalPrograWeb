@@ -6,7 +6,7 @@ import java.util.Optional;
 import pe.org.incatrek.model.Proveedor;
 
 public interface IProveedorService {
-	public boolean insertar(Proveedor proveedor);
+	public Integer insertar(Proveedor proveedor);
 	public boolean modificar(Proveedor proveedor);
 	public void eliminar(int idProveedor);
 	List<Proveedor> listar();

@@ -33,6 +33,7 @@
 							<thead>
 								<tr>
 									<th class="text-center">ID</th>
+									<th class="text-center">TURISTA</th>
 									<th class="text-center">JURAMENTO</th>
 									<th class="text-center">FECHA</th>
 									<th class="text-center">OPERACION</th>
@@ -43,6 +44,7 @@
 							<tbody>
 								<tr th:each="dec: ${listaDeclaraciones}">
 									<td th:text="${dec.idDeclaracion}"></td>
+									<td th:text="${dec.turista.nombreTurista}"></td>
 									<td th:text="${dec.juramento}"></td>
 									<td th:text="${#dates.format(dec.fechaDeclaracion, 'dd/MM/yyyy')}"></td>
 									<td class="text-center"><a class="glyphicon glyphicon-trash" th:href="@{/declaracion/eliminar?id=}+${dec.idDeclaracion}"> Eliminar</a></td>

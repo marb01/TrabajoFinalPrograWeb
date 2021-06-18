@@ -1,5 +1,6 @@
 package pe.org.incatrek.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -94,6 +95,27 @@ public class PaqueteController {
 			return "listPaquete";
 		}
 		
+		@RequestMapping("/irBuscar")
+		public String buscar(Model model) {
+			model.addAttribute("paquete", new Paquete());
+			return "buscarPaquete";
+		}
+		
+		@RequestMapping("/buscar")
+		public String findByCategory(Map<String, Object> model, @ModelAttribute Paquete paquete)throws ParseException	
+		{
+			List<Paquete> listaPaquetes;
+			paquete.setNombrePaquete(paquete.getNombrePaquete());
+			listaPaquetes = pService.buscarPorNombre(paquete.getNombrePaquete());
+			if (listaPaquetes.isEmpty()) {
+				listaPaquetes = pService.buscarPorNombre(paquete.getNombrePaquete());
+			}
+			if (listaPaquetes.isEmpty()) {
+				model.put("mensaje", "No se encontraron coincidencias");
+			}
+			model.put("listaPaquetes", listaPaquetes);
+			return "buscarPaquete";
+		}
 		
 		
 }

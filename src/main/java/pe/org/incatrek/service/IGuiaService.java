@@ -6,7 +6,7 @@ import java.util.Optional;
 import pe.org.incatrek.model.Guia;
 
 public interface IGuiaService {
-	public boolean insertar(Guia guia);
+	public Integer insertar(Guia guia);
 	public boolean modificar(Guia guia);
 	public void eliminar(int idGuia);
 	List<Guia> buscarPorNombre(String nombreGuia);

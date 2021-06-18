@@ -1,6 +1,5 @@
 package pe.org.incatrek.service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +11,5 @@ public interface IPaqueteService {
 	public void eliminar(int idPaquete);
 	List<Paquete> listar();
 	List<Paquete> buscarPorNombre(String nombrePaquete);
-	List<Paquete> buscarPorFecha(Date fechaPaquete);
 	public Optional<Paquete> listarId(int idPaquete);
 }

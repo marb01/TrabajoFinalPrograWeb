@@ -29,7 +29,7 @@ public class Reserva implements Serializable {
 	@Column(name = "nombreReserva", nullable = false, length = 30)
 	private String nombreReserva;
 	
-	@Column(name = "numParticipantes", nullable = false, length = 2)
+	@Column(name = "numParticipantes", length = 2)
 	private int numParticipantes;
 
 	@Temporal(TemporalType.DATE)
@@ -45,12 +45,16 @@ public class Reserva implements Serializable {
 	@JoinColumn(name="idPaquete", nullable=false)
 	private Paquete paquete;
 	
+	@ManyToOne
+	@JoinColumn(name="idGuia", nullable=false)
+	private Guia guia;
+	
 	public Reserva() {
 		super();
 	}
 
 	public Reserva(int idReserva, String nombreReserva, int numParticipantes, Date fechaReserva, Turista turista,
-			Paquete paquete) {
+			Paquete paquete, Guia guia) {
 		super();
 		this.idReserva = idReserva;
 		this.nombreReserva = nombreReserva;
@@ -58,6 +62,7 @@ public class Reserva implements Serializable {
 		this.fechaReserva = fechaReserva;
 		this.turista = turista;
 		this.paquete = paquete;
+		this.guia = guia;
 	}
 
 	public int getIdReserva() {
@@ -108,4 +113,11 @@ public class Reserva implements Serializable {
 		this.paquete = paquete;
 	}
 
+	public Guia getGuia() {
+		return guia;
+	}
+
+	public void setGuia(Guia guia) {
+		this.guia = guia;
+	}
 }

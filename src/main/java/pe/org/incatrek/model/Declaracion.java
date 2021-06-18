@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import javax.persistence.Temporal;
@@ -31,16 +33,21 @@ public class Declaracion implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat (pattern="yyyy-MM-dd")
 	private Date fechaDeclaracion;
+	
+	@OneToOne
+	@JoinColumn(name="idTurista", nullable=false)
+	private Turista turista;
 
 	public Declaracion() {
 		super();
 	}
 
-	public Declaracion(int idDeclaracion, String juramento, Date fechaDeclaracion) {
+	public Declaracion(int idDeclaracion, String juramento, Date fechaDeclaracion, Turista turista) {
 		super();
 		this.idDeclaracion = idDeclaracion;
 		this.juramento = juramento;
 		this.fechaDeclaracion = fechaDeclaracion;
+		this.turista = turista;
 	}
 
 	public int getIdDeclaracion() {
@@ -67,6 +74,15 @@ public class Declaracion implements Serializable {
 		this.fechaDeclaracion = fechaDeclaracion;
 	}
 
+	public Turista getTurista() {
+		return turista;
+	}
+
+	public void setTurista(Turista turista) {
+		this.turista = turista;
+	}
+
+	
 }
 
 	

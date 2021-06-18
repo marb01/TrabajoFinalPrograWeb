@@ -1,6 +1,5 @@
 package pe.org.incatrek.service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,5 +15,4 @@ public interface IReservaService {
 	public List<Reserva> buscarNombreReserva(String nombreReserva);
 	public List<Reserva> buscarTurista(String nombreTurista);
 	public List<Reserva> buscarPaquete(String nombrePaquete);
-	public List<Reserva> buscarPorFecha(Date fechaReserva);
 }

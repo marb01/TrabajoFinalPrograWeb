@@ -27,6 +27,14 @@
 				<label for="iddeclaracion" style='color:white;'>ID:</label>
 					<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{idDeclaracion}"></input>
 					
+					<label style='color:white;' for="turista" class= "col-sm-2 col-form-label">Turista:</label>
+					<select class="form-control" th:field="*{turista.idTurista}"> 
+						<option th:each= "t:${listaTuristas}" th:value="${t.idTurista}"
+								th:text="${t.nombreTurista}"
+							 	th:selected="(${t.idTurista} == *{turista.idTurista})">
+						</option>
+					</select>
+					
 					<div class="form-group">
 						<label for="juramento" style='color:white;'>Juramento:</label>
 						<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{juramento}" id="juramento"></input>

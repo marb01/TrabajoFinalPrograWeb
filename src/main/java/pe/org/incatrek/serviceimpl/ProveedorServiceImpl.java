@@ -18,12 +18,11 @@ public class ProveedorServiceImpl implements IProveedorService {
 	
 	@Override
 	@Transactional
-	public boolean insertar(Proveedor proveedor) {
-		Proveedor objProveedor = pR.save(proveedor);
-		if(objProveedor == null)
-			return false;
-		else
-			return true;
+	public Integer insertar(Proveedor proveedor) {
+		int rpta = pR.busquedaRUCProveedor(proveedor.getRucProveedor());
+		if(rpta == 0)
+			pR.save(proveedor);
+		return rpta;
 	}
 
 	@Override

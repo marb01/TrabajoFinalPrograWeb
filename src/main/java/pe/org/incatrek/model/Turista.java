@@ -28,13 +28,13 @@ public class Turista implements Serializable {
 	@Column(name = "celularTurista", nullable = false, length = 9)
 	private int celularTurista;
 
-	@Column(name = "direccionTurista", nullable = false, length = 40)
+	@Column(name = "direccionTurista", nullable = false, length = 30)
 	private String direccionTurista;
 
 	@Column(name = "dniTurista", nullable = false, length = 8)
 	private String dniTurista;
 
-	@Column(name = "emailTurista", nullable = false, length = 40)
+	@Column(name = "emailTurista", nullable = false, length = 30)
 	private String emailTurista;
 	
 	public Turista() {

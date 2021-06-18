@@ -1,5 +1,6 @@
 package pe.org.incatrek.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -46,18 +47,19 @@ public class ProveedorController {
 		public String registrar (@ModelAttribute Proveedor objProveedor,BindingResult binRes,Model model)throws ParseException
 			{
 				if(binRes.hasErrors())
-				return("proveedor");
+					return("proveedor");
 				else {
-					boolean flag = pService.insertar(objProveedor);
-					if (flag)
-						return "redirect:/proveedor/listar";
+					int rpta = pService.insertar(objProveedor);
+					if (rpta > 0) {
+						model.addAttribute("mensaje", "El RUC del proveedor ya se encuentra registrado");
+						return "proveedor";
+					}
 					else {
-						model.addAttribute("mensaje", "Ocurrio un error");
-						return "redirect:/proveedor/irRegistrar";
+						model.addAttribute("mensaje", "Se guardo correctamente");
+						return "redirect:/proveedor/listar";
 					}
 				}
 			}
-			
 		@RequestMapping("/modificar/{id}")
 		public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {
 			Optional<Proveedor> objProveedor = pService.listarId(id);
@@ -93,6 +95,28 @@ public class ProveedorController {
 			return "listProveedor";
 		}
 		
+		
+		@RequestMapping("/irBuscar")
+		public String buscar(Model model) {
+			model.addAttribute("proveedor", new Proveedor());
+			return "buscarProveedor";
+		}
+		
+		@RequestMapping("/buscar")
+		public String findByCategory(Map<String, Object> model, @ModelAttribute Proveedor proveedor)throws ParseException	
+		{
+			List<Proveedor> listaProveedores;
+			proveedor.setNombreProveedor(proveedor.getNombreProveedor());
+			listaProveedores = pService.buscarPorNombre(proveedor.getNombreProveedor());
+			if (listaProveedores.isEmpty()) {
+				listaProveedores = pService.buscarPorRUC(proveedor.getNombreProveedor());
+			}
+			if (listaProveedores.isEmpty()) {
+				model.put("mensaje", "No se encontraron coincidencias");
+			}
+			model.put("listaProveedores", listaProveedores);
+			return "buscarProveedor";
+		}
 		
 		
 }

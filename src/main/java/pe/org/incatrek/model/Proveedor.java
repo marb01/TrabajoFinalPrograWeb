@@ -22,9 +22,6 @@ public class Proveedor implements Serializable {
 	@Column(name = "nombreProveedor", nullable = false, length = 30)
 	private String nombreProveedor;
 	
-	@Column(name = "apellidoProveedor", nullable = false, length = 30)
-	private String apellidoProveedor;
-
 	@Column(name = "rucProveedor", nullable = false, length = 11)
 	private String rucProveedor;
 
@@ -35,12 +32,11 @@ public class Proveedor implements Serializable {
 		super();
 	}
 
-	public Proveedor(int idProveedor, String nombreProveedor, String apellidoProveedor, String rucProveedor,
+	public Proveedor(int idProveedor, String nombreProveedor, String rucProveedor,
 			int telefonoProveedor) {
 		super();
 		this.idProveedor = idProveedor;
 		this.nombreProveedor = nombreProveedor;
-		this.apellidoProveedor = apellidoProveedor;
 		this.rucProveedor = rucProveedor;
 		this.telefonoProveedor = telefonoProveedor;
 	}
@@ -59,14 +55,6 @@ public class Proveedor implements Serializable {
 
 	public void setNombreProveedor(String nombreProveedor) {
 		this.nombreProveedor = nombreProveedor;
-	}
-
-	public String getApellidoProveedor() {
-		return apellidoProveedor;
-	}
-
-	public void setApellidoProveedor(String apellidoProveedor) {
-		this.apellidoProveedor = apellidoProveedor;
 	}
 
 	public String getRucProveedor() {

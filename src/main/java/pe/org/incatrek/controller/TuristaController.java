@@ -1,5 +1,6 @@
 package pe.org.incatrek.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -45,20 +46,22 @@ public class TuristaController {
 		
 		@RequestMapping("/registrar")
 		public String registrar (@ModelAttribute Turista objTurista,BindingResult binRes,Model model)throws ParseException
-			{
-				if(binRes.hasErrors())
+		{
+			if(binRes.hasErrors())
 				return("turista");
+			else {
+				int rpta = tService.insertar(objTurista);
+				if (rpta > 0) {
+					model.addAttribute("mensaje", "El DNI del turista ya se encuentra registrado");
+					return "turista";
+				}
 				else {
-					boolean flag = tService.insertar(objTurista);
-					if (flag)
-						return "redirect:/turista/listar";
-					else {
-						model.addAttribute("mensaje", "Ocurrio un error");
-						return "redirect:/turista/irRegistrar";
-					}
+					model.addAttribute("mensaje", "Se guardo correctamente");
+					return "redirect:/turista/listar";
 				}
 			}
-			
+		}
+		
 		@RequestMapping("/modificar/{id}")
 		public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException {
 			Optional<Turista> objTurista = tService.listarId(id);
@@ -92,6 +95,29 @@ public class TuristaController {
 		public String listar(Map<String, Object> model) {
 			model.put("listaTuristas", tService.listar());
 			return "listTurista";
+		}
+		
+		
+		@RequestMapping("/irBuscar")
+		public String buscar(Model model) {
+			model.addAttribute("turista", new Turista());
+			return "buscarTurista";
+		}
+		
+		@RequestMapping("/buscar")
+		public String findByCategory(Map<String, Object> model, @ModelAttribute Turista turista)throws ParseException	
+		{
+			List<Turista> listaTuristas;
+			turista.setNombreTurista(turista.getNombreTurista());
+			listaTuristas = tService.buscarPorNombre(turista.getNombreTurista());
+			if (listaTuristas.isEmpty()) {
+				listaTuristas = tService.buscarPorDNI(turista.getNombreTurista());
+			}
+			if (listaTuristas.isEmpty()) {
+				model.put("mensaje", "No se encontraron coincidencias");
+			}
+			model.put("listaTuristas", listaTuristas);
+			return "buscarTurista";
 		}
 		
 		

@@ -29,43 +29,43 @@
 					
 					<div class="form-group">
 						<label for="nombre" style='color:white;'>Nombre:</label>
-						<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{nombreTurista}" id="nombre" ></input>
+						<input type="text" style='margin-bottom:20px;' class="form-control" th:field="*{nombreTurista}" id="nombre" maxlength="30" ></input>
 						
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('nombreTurista')}" 
 							th:errors="*{nombreTurista}">						
 						</div>
 						
 						<label for="apellido" style='color:white;'>Apellidos:</label>
-						<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{apellidoTurista}" id="apellido"></input>
+						<input type="text" style='margin-bottom:20px;'  class="form-control" th:field="*{apellidoTurista}" id="apellido" maxlength="30"></input>
 						
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('apellidoTurista')}" 
-							th:errors="*{apellidoTurista}">						
+							th:errors="*{apellidoTurista}" >						
 						</div>
 						
 					
 						<label for="celular" style='color:white;'>Celular:</label>
-						<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{celularTurista}" id="celular"></input>
+						<input type="number" style='margin-bottom:20px;' class="form-control" th:field="*{celularTurista}" id="celular" maxlength="9"></input>
 						
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('celularTurista')}" 
 							th:errors="*{celularTurista}">						
 						</div>
 						
 						<label for="direccion" style='color:white;'>Direccion:</label>
-						<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{direccionTurista}" id="direccion"></input>
+						<input type="text" style='margin-bottom:20px;' class="form-control" th:field="*{direccionTurista}" id="direccion" maxlength="30"></input>
 						
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('direccionTurista')}" 
 							th:errors="*{direccionTurista}">						
 						</div>
 						
 						<label for="dni" style='color:white;'>DNI:</label>
-						<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{dniTurista}" id="dni"></input>
+						<input type="number" style='margin-bottom:20px;'  class="form-control" th:field="*{dniTurista}" id="dni" maxlength="8"></input>
 						
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('dniTurista')}" 
 							th:errors="*{dniTurista}">						
 						</div>
 						
 						<label for="email" style='color:white;'>Email:</label>
-						<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{emailTurista}" id="email"></input>
+						<input type="email" style='margin-bottom:20px;'  class="form-control" th:field="*{emailTurista}" id="email" maxlength="30"></input>
 						
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('emailTurista')}" 
 							th:errors="*{emailTurista}">						

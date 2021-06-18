@@ -38,14 +38,14 @@
 					
 						
 						<label for="ruc" style='color:white;'>RUC:</label>
-						<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{rucProveedor}" id="ruc"></input>
+						<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{rucProveedor}" id="ruc" maxlength="11"></input>
 						
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('rucProveedor')}" 
 							th:errors="*{rucProveedor}">						
 						</div>
 						
 						<label for="telefono" style='color:white;'>Telefono</label>
-						<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{telefonoProveedor}" id="telefono"></input>
+						<input style='margin-bottom:20px;' type="text" class="form-control" th:field="*{telefonoProveedor}" id="telefono" maxlength="9"></input>
 						
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('telefonoProveedor')}" 
 							th:errors="*{telefonoProveedor}">						

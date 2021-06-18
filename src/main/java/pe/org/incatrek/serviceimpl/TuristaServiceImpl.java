@@ -18,12 +18,11 @@ public class TuristaServiceImpl implements ITuristaService {
 	
 	@Override
 	@Transactional
-	public boolean insertar(Turista turista) {
-		Turista objTurista = tR.save(turista);
-		if(objTurista == null)
-			return false;
-		else
-			return true;
+	public Integer insertar(Turista turista) {
+		int rpta = tR.busquedaDNITurista(turista.getDniTurista());
+		if(rpta == 0)
+			tR.save(turista);
+		return rpta;
 	}
 
 	@Override

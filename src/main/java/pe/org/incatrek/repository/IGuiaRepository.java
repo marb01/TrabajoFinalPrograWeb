@@ -12,6 +12,9 @@ import pe.org.incatrek.model.Guia;
 
 @Repository
 public interface IGuiaRepository extends JpaRepository<Guia, Integer>{	
+	@Query("select count(g.dniGuia) from Guia g where g.dniGuia = :dniGuia")
+	public int busquedaDNIGuia(@Param("dniGuia") String dniGuia);
+	
 	@Query("from Guia g where g.nombreGuia like %:nombreGuia%")
 	List<Guia> buscarPorNombre(@Param("nombreGuia") String nombreGuia);
 	
